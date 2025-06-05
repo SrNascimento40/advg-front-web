@@ -1,7 +1,9 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import HomePage from './pages/HomePage'; // Vamos criar este componente
-import LawyerDashboard from './pages/LawyerDashboard'; // Vamos criar este componente
-import ClientDashboard from './pages/ClientDashboard'; // Vamos criar este componente
+import HomePage from './pages/HomePage';
+import LawyerDashboard from './pages/LawyerDashboard';
+import ClientDashboard from './pages/ClientDashboard';
+import Login from './pages/Login';
+import Chat from './pages/Chat';
 
 function App() {
   return (
@@ -30,6 +32,8 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/advogado" element={<LawyerDashboard />} />
           <Route path="/cliente" element={<ClientDashboard />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/chat" element={<Chat userName="blue" />} />
         </Routes>
       </div>
     </Router>

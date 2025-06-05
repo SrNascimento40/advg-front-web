@@ -1,0 +1,57 @@
+/* src/components/Dashboard.css */
+
+.dashboard-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ocupa a altura total da viewport */
+    background-color: var(--background-color); /* Usando a variável de cor */
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .dashboard-grid {
+    width: 90%; /* Ajuste a largura do grid */
+    max-width: 960px; /* Limite a largura máxima para telas grandes */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Espaçamento entre os itens */
+  }
+  
+  .dashboard-item {
+    width: calc(33.33% - 20px); /* 3 itens por linha com gap de 20px */
+    /* Para telas menores, ajuste a largura para 50% ou 100% */
+    /* @media (max-width: 768px) { width: calc(50% - 20px); } */
+    /* @media (max-width: 480px) { width: calc(100% - 20px); } */
+  
+    aspect-ratio: 1; /* Mantém a proporção quadrada */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--light-color);
+    border-radius: 15px; /* Mais arredondado */
+    border: none; /* Remove a borda padrão do botão */
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra mais suave */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Transição suave */
+  }
+  
+  .dashboard-item:hover {
+    transform: translateY(-5px); /* Efeito de "levantar" no hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra mais pronunciada no hover */
+  }
+  
+  .dashboard-item-text {
+    margin-top: 10px;
+    font-size: 16px; /* Tamanho da fonte ajustado */
+    font-weight: 600; /* Um pouco mais encorpado */
+    color: var(--text-color);
+    text-align: center;
+  }
+  
+  /* Estilos para os SVGs dentro dos botões */
+  .dashboard-item svg {
+    color: var(--primary-color); /* Garante que a cor do ícone seja a primária */
+  }
