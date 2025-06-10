@@ -4,6 +4,12 @@ import LawyerDashboard from './pages/LawyerDashboard';
 import ClientDashboard from './pages/ClientDashboard';
 import Login from './pages/Login';
 import Chat from './pages/Chat';
+import EditProfile from './pages/EditProfile';
+import Schedule from './pages/Schedule';
+import Invoices from './pages/Invoices';
+import ProcessDetails from './pages/ProcessDetails';
+import Processes from './pages/Processes';
+import Settings from './pages/Settings';
 
 function App() {
   return (
@@ -34,6 +40,12 @@ function App() {
           <Route path="/cliente" element={<ClientDashboard />} />
           <Route path="/login" element={<Login />} />
           <Route path="/chat" element={<Chat userName="blue" />} />
+          <Route path="/edit_profile" element={<EditProfile />} />
+          <Route path="/schedule" element={<Schedule />} />
+          <Route path="/invoices" element={<Invoices />} />
+          <Route path="/process_details" element={<ProcessDetails />} />
+          <Route path="/processes" element={<Processes />} />
+          <Route path="/settings" element={<Settings />} />
         </Routes>
       </div>
     </Router>

@@ -14,12 +14,12 @@ const Dashboard = () => {
   const navigate = useNavigate(); // Hook para navegação programática
 
   const menuItems: MenuItem[] = [
-    { name: 'Processos', icon: 'briefcase', routeName: '/processos' }, // Exemplo de rota web
-    { name: 'Agenda', icon: 'calendar', routeName: '/agenda' },
-    { name: 'Mensagens', icon: 'chatbubble', routeName: '/mensagens' }, // Rota para o componente de chat
-    { name: 'Faturas', icon: 'document-text', routeName: '/faturas' },
+    { name: 'Processos', icon: 'briefcase', routeName: '/processes' },
+    { name: 'Agenda', icon: 'calendar', routeName: '/schedule' },
+    { name: 'Mensagens', icon: 'chatbubble', routeName: '/chat' },
+    { name: 'Faturas', icon: 'document-text', routeName: '/invoices' },
     { name: 'Perfil', icon: 'person', routeName: '/perfil' },
-    { name: 'Configurações', icon: 'settings', routeName: '/configuracoes' },
+    { name: 'Configurações', icon: 'settings', routeName: '/settings' },
   ];
 
   // Função para renderizar os ícones SVG com base no nome
