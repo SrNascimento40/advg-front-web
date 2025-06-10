@@ -1,7 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
-import Login from "./Login";
-
 
 const LawyerDashboard = () => {
   const { isAuthenticated, user, isLoading } = useAuth();
