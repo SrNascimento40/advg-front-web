@@ -10,11 +10,9 @@ function Settings() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    const confirm = window.confirm('Are you sure you want to log out?');
-    if (confirm) {
-      console.log('User logged out');
-    }
-  };
+    localStorage.removeItem('token');
+    navigate('/login');
+  };  
 
   const showComingSoon = () => {
     alert('Feature not available yet');

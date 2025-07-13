@@ -10,6 +10,9 @@ import Invoices from './pages/Invoices';
 import ProcessDetails from './pages/ProcessDetails';
 import Processes from './pages/Processes';
 import Settings from './pages/Settings';
+import ForgotPassword from './pages/ForgotPassword';
+import Register from './pages/Register';
+import { RequireAuth } from './components/RequireAuth';
 
 function App() {
   return (
@@ -35,17 +38,89 @@ function App() {
 
       <div className="container mt-4">
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/advogado" element={<LawyerDashboard />} />
-          <Route path="/cliente" element={<ClientDashboard />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/chat" element={<Chat userName="blue" />} />
-          <Route path="/edit_profile" element={<EditProfile />} />
-          <Route path="/schedule" element={<Schedule />} />
-          <Route path="/invoices" element={<Invoices />} />
-          <Route path="/process_details" element={<ProcessDetails />} />
-          <Route path="/processes" element={<Processes />} />
-          <Route path="/settings" element={<Settings />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route
+            path="/"
+            element={
+              <RequireAuth>
+                <HomePage />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/advogado"
+            element={
+              <RequireAuth>
+                <LawyerDashboard />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/cliente"
+            element={
+              <RequireAuth>
+                <ClientDashboard />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/chat"
+            element={
+              <RequireAuth>
+                <Chat userName="blue"  />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/edit_profile"
+            element={
+              <RequireAuth>
+                <EditProfile  />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/schedule"
+            element={
+              <RequireAuth>
+                <Schedule />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/invoices"
+            element={
+              <RequireAuth>
+                <Invoices />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/settings"
+            element={
+              <RequireAuth>
+                <Settings />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/process_details"
+            element={
+              <RequireAuth>
+                <ProcessDetails />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/processes"
+            element={
+              <RequireAuth>
+                <Processes />
+              </RequireAuth>
+            }
+          />
         </Routes>
       </div>
     </Router>

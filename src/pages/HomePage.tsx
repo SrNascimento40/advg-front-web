@@ -1,17 +1,15 @@
-import { useNavigate } from 'react-router-dom'; // Importe useNavigate do react-router-dom
+import { useNavigate } from 'react-router-dom'; 
 import '../styles/Dashboard.css';
-// Definição da interface para os itens do menu
+
 interface MenuItem {
   name: string;
-  icon: string; // O nome do ícone (Ionicons) ou um identificador para o SVG
-  routeName: string; // O nome da rota para onde navegar
+  icon: string; 
+  routeName: string; 
 }
 
-// O componente Dashboard não precisa mais de 'navigation' como prop diretamente do React Native Navigation.
-// Ele usará o hook useNavigate.
 const Dashboard = () => {
 
-  const navigate = useNavigate(); // Hook para navegação programática
+  const navigate = useNavigate(); 
 
   const menuItems: MenuItem[] = [
     { name: 'Processos', icon: 'briefcase', routeName: '/processes' },
@@ -22,9 +20,6 @@ const Dashboard = () => {
     { name: 'Configurações', icon: 'settings', routeName: '/settings' },
   ];
 
-  // Função para renderizar os ícones SVG com base no nome
-  // Em um cenário real, você poderia ter um componente de ícone separado
-  // ou usar uma biblioteca de ícones como Font Awesome.
   const renderIcon = (iconName: string) => {
     switch (iconName) {
       case 'briefcase':
