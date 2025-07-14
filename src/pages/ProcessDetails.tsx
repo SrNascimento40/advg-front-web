@@ -1,55 +1,59 @@
-import {
-  IoDocumentTextOutline,
-  IoMailOutline,
-  IoCalendarOutline,
-  IoBriefcaseOutline,
-} from 'react-icons/io5';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import api from '../services/api';
 
-interface TimelineItem {
-  id: string;
-  date: string;
+interface LegalCase {
+  id: number;
+  title: string;
+  status: string;
   description: string;
-  icon: 'document-text-outline' | 'mail-outline' | 'calendar-outline' | 'briefcase-outline';
+  created_at: string;
+  execution_date: string;
 }
 
-const processDetails = {
-  id: '1',
-  title: 'Processo Trabalhista',
-  status: 'Em andamento',
-  timeline: [
-    { id: '1', date: '2025-03-01', description: 'Abertura do processo', icon: 'document-text-outline' },
-    { id: '2', date: '2025-03-05', description: 'Petição inicial enviada', icon: 'mail-outline' },
-    { id: '3', date: '2025-03-10', description: 'Primeira audiência marcada', icon: 'calendar-outline' },
-    { id: '4', date: '2025-03-15', description: 'Audiência realizada', icon: 'briefcase-outline' },
-  ] as TimelineItem[],
-};
-
-// Mapeamento de string para ícone
-const iconMap = {
-  'document-text-outline': IoDocumentTextOutline,
-  'mail-outline': IoMailOutline,
-  'calendar-outline': IoCalendarOutline,
-  'briefcase-outline': IoBriefcaseOutline,
-};
-
 function ProcessDetails() {
+  const { id } = useParams<{ id: string }>();
+  const [processDetails, setProcessDetails] = useState<LegalCase | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!id) return;
+
+    api.get(`/legal_cases/${id}`)
+      .then((res) => {
+        setProcessDetails(res.data);
+        console.log('Processo Detalhes:', res.data);
+        
+      })
+      .catch((err) => {
+        console.error('Erro ao buscar detalhes do processo:', err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [id]);
+
+  if (loading) {
+    return <p>Carregando detalhes do processo...</p>;
+  }
+
+  if (!processDetails) {
+    return <p>Processo não encontrado.</p>;
+  }
+
   return (
     <div className="process-container">
       <h2 className="process-header">{processDetails.title}</h2>
       <p className="process-status">Status: {processDetails.status}</p>
-
-      {processDetails.timeline.map((item) => {
-        const IconComponent = iconMap[item.icon];
-        return (
-          <div key={item.id} className="timeline-item">
-            <IconComponent size={24} color="#007bff" />
-            <div className="timeline-text">
-              <p className="timeline-date">{item.date}</p>
-              <p className="timeline-description">{item.description}</p>
-            </div>
+        <div key={processDetails.id} className="timeline-item">
+          <div className="timeline-text">
+            <p className="timeline-date">Processo criado em {new Date(processDetails.created_at).toLocaleDateString('pt-BR')}</p>
+            <p className="timeline-description">descrição do processo: {processDetails.description}</p>
+            {processDetails.execution_date && (
+              <p className="timeline-execution">Data de execução: {new Date(processDetails.execution_date).toLocaleDateString('pt-BR')}</p>
+            )}
           </div>
-        );
-      })}
+        </div>
     </div>
   );
 }

@@ -1,25 +1,39 @@
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { IoDocumentText } from 'react-icons/io5';
+import api from '../services/api'; // supondo que você já tenha configurado o axios com o token
 
-interface ProcessItem {
-  id: string;
+interface LegalCase {
+  id: number;
   title: string;
   status: string;
 }
 
-const processes: ProcessItem[] = [
-  { id: '1', title: 'Process #12345', status: 'Em andamento' },
-  { id: '2', title: 'Process #67890', status: 'Finalizado' },
-  { id: '3', title: 'Process #54321', status: 'Iniciado' },
-];
-
 function Processes() {
   const navigate = useNavigate();
+  const [processes, setProcesses] = useState<LegalCase[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const goToDetails = () => {
-    navigate(`/process_details`);
-    // navigate(`/process_details/${processId}`); o ideal é esse puxando info do id
+  useEffect(() => {
+    api.get('/legal_cases')
+      .then((res) => {
+        setProcesses(res.data);
+      })
+      .catch((err) => {
+        console.error('Erro ao buscar processos:', err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
+  const goToDetails = (processId: number) => {
+    navigate(`/process_details/${processId}`);
   };
+
+  if (loading) {
+    return <p>Carregando processos...</p>;
+  }
 
   return (
     <div className="processes-container">
@@ -28,10 +42,10 @@ function Processes() {
         <div
           key={item.id}
           className="process-card"
-          onClick={() => goToDetails()}
+          onClick={() => goToDetails(item.id)}
           role="button"
           tabIndex={0}
-          onKeyDown={(e) => e.key === 'Enter' && goToDetails()}
+          onKeyDown={(e) => e.key === 'Enter' && goToDetails(item.id)}
         >
           <div className="icon-container">
             <IoDocumentText size={30} color="#007bff" />

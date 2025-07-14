@@ -106,7 +106,7 @@ function App() {
             }
           />
           <Route
-            path="/process_details"
+            path="/process_details/:id"
             element={
               <RequireAuth>
                 <ProcessDetails />
