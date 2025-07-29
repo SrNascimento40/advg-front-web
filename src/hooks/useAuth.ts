@@ -1,8 +1,15 @@
 import { useState, useEffect } from 'react';
+import api from '../services/api';
+
+interface User {
+  id: number;
+  name: string;
+  role: 'advogado' | 'cliente';
+}
 
 interface AuthState {
   isAuthenticated: boolean;
-  user: { name: string; role: 'advogado' | 'cliente' } | null;
+  user: User | null;
   isLoading: boolean;
 }
 
@@ -14,19 +21,30 @@ const useAuth = (): AuthState => {
   });
 
   useEffect(() => {
-    // Simula uma chamada API para verificar o status de autenticação
     const checkAuth = async () => {
       try {
-        setAuthState((prev) => ({ ...prev, isLoading: true }));
-        const token = localStorage.getItem('authToken');
-        if (token) {
-          // Em um cenário real, você decodificaria o token ou faria uma chamada API
-          // para validar e obter os dados do usuário.
-          const dummyUser = { name: 'João Silva', role: 'advogado' as 'advogado' }; // Exemplo
-          setAuthState({ isAuthenticated: true, user: dummyUser, isLoading: false });
-        } else {
+        const token = localStorage.getItem('token');
+        if (!token) {
           setAuthState({ isAuthenticated: false, user: null, isLoading: false });
+          return;
         }
+
+        // ✅ define o token nos headers para todas as requests
+        api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+        // ✅ chama a rota /me
+        const res = await api.get('/me');
+        const userData = res.data;
+
+        setAuthState({
+          isAuthenticated: true,
+          user: {
+            id: userData.id,
+            name: userData.name,
+            role: userData.role,
+          },
+          isLoading: false,
+        });
       } catch (error) {
         console.error('Erro ao verificar autenticação:', error);
         setAuthState({ isAuthenticated: false, user: null, isLoading: false });

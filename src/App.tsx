@@ -13,6 +13,7 @@ import Settings from './pages/Settings';
 import ForgotPassword from './pages/ForgotPassword';
 import Register from './pages/Register';
 import { RequireAuth } from './components/RequireAuth';
+import Messages from './pages/Messages';
 
 function App() {
   return (
@@ -69,7 +70,15 @@ function App() {
             path="/chat"
             element={
               <RequireAuth>
-                <Chat userName="blue"  />
+                <Chat />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/messages/:userId"
+            element={
+              <RequireAuth>
+                <Messages />
               </RequireAuth>
             }
           />

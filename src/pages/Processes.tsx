@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { IoDocumentText } from 'react-icons/io5';
-import api from '../services/api'; // supondo que você já tenha configurado o axios com o token
+import api from '../services/api';
 
 interface LegalCase {
   id: number;
