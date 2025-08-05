@@ -1,7 +1,11 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://127.0.0.1:3000', // ajuste para sua API
+  // local
+  // baseURL: 'http://127.0.0.1:3000'
+
+  // prod
+  baseURL: 'https://avdg-backend-production.up.railway.app/users/sign_in'
 });
 
 // adiciona o token automaticamente em todas as requisições
