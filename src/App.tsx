@@ -67,7 +67,7 @@ function App() {
             }
           />
           <Route
-            path="/chat"
+            path="/chat/:userId"
             element={
               <RequireAuth>
                 <Chat />
@@ -75,7 +75,7 @@ function App() {
             }
           />
           <Route
-            path="/messages/:userId"
+            path="/messages"
             element={
               <RequireAuth>
                 <Messages />

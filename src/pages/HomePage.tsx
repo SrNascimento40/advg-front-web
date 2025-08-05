@@ -14,7 +14,7 @@ const Dashboard = () => {
   const menuItems: MenuItem[] = [
     { name: 'Processos', icon: 'briefcase', routeName: '/processes' },
     { name: 'Agenda', icon: 'calendar', routeName: '/schedule' },
-    { name: 'Mensagens', icon: 'chatbubble', routeName: '/chat' },
+    { name: 'Mensagens', icon: 'chatbubble', routeName: '/messages' },
     { name: 'Faturas', icon: 'document-text', routeName: '/invoices' },
     { name: 'Perfil', icon: 'person', routeName: '/perfil' },
     { name: 'Configurações', icon: 'settings', routeName: '/settings' },
