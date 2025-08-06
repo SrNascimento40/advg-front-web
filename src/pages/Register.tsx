@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 // const API_URL = 'http://127.0.0.1:3000';
 
 // prod
-const API_URL = 'https://avdg-backend-production.up.railway.app/users/sign_in'
+const API_URL = 'https://avdg-backend-production.up.railway.app'
 
 function Register() {
   const navigate = useNavigate();

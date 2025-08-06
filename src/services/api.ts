@@ -5,7 +5,7 @@ const api = axios.create({
   // baseURL: 'http://127.0.0.1:3000'
 
   // prod
-  baseURL: 'https://avdg-backend-production.up.railway.app/users/sign_in'
+  baseURL: 'https://avdg-backend-production.up.railway.app'
 });
 
 // adiciona o token automaticamente em todas as requisições
